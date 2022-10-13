@@ -8,6 +8,44 @@ const renderer = new THREE.WebGLRenderer({ antialias: true });
 renderer.setSize(window.innerWidth, window.innerHeight);
 document.body.appendChild(renderer.domElement);
 
+const loadingManager = new THREE.LoadingManager();
+const progressbarContainer = document.getElementById("progressbar-container");
+const progressbar = document.getElementById("progressbar");
+loadingManager.onStart = function (url, itemsLoaded, itemsTotal) {
+  console.log(
+    "Начата загрузка файлов: " +
+      url +
+      ".\nЗагружено " +
+      itemsLoaded +
+      " из " +
+      itemsTotal +
+      " файлов."
+  );
+};
+
+loadingManager.onLoad = function () {
+  console.log("Загрузка завершена!");
+  progressbarContainer.style.display = "none";
+};
+
+loadingManager.onProgress = function (url, itemsLoaded, itemsTotal) {
+  const percent = (itemsLoaded / itemsTotal) * 100;
+  progressbar.value = percent;
+  console.log(
+    "Загрузка файлов: " +
+      url +
+      ".\nЗагружено " +
+      itemsLoaded +
+      " из " +
+      itemsTotal +
+      " файлов."
+  );
+};
+
+loadingManager.onError = function (url) {
+  console.log("Произошла ошибка при загрузке " + url);
+};
+
 // Sets the color of the background
 renderer.setClearColor(0xfefefe);
 
@@ -34,8 +72,8 @@ renderer.outputEncoding = THREE.sRGBEncoding;
 renderer.toneMapping = THREE.ACESFilmicToneMapping;
 renderer.toneMappingExposure = 4;
 
-const gltfLoader = new GLTFLoader();
-const rgbeLoader = new RGBELoader();
+const gltfLoader = new GLTFLoader(loadingManager);
+const rgbeLoader = new RGBELoader(loadingManager);
 let car = null;
 rgbeLoader.load("./assets/MR_INT-005_WhiteNeons_NAD.hdr", (texture) => {
   texture.mapping = THREE.EquirectangularReflectionMapping;

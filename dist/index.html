@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,9 +9,22 @@
   margin: 0;
 }
 
+#progressbar-container {
+  height: 100vh;
+  width: 100%;
+  background-color: #00000080;
+  place-content: center;
+  display: grid;
+  position: fixed;
+  inset: 0;
+}
+
 </style>
-</head>
-<body>
+  </head>
+  <body>
+    <div id="progressbar-container">
+      <progress id="progressbar" max="100" value="0"></progress>
+    </div>
     <script src="/index.64a4978e.js" defer=""></script>
-</body>
+  </body>
 </html>

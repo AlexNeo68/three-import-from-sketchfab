@@ -1,17 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Wael Yasmina Three.js boilerplate</title>
     <style>
-        body {
-            margin: 0
-        }
+      body {
+        margin: 0;
+      }
+
+      #progressbar-container {
+        position: fixed;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        top: 0;
+        height: 100vh;
+        width: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        display: grid;
+        place-content: center;
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
+    <div id="progressbar-container">
+      <progress id="progressbar" max="100" value="0"></progress>
+    </div>
     <script src="./js/scripts.js" type="module"></script>
-</body>
+  </body>
 </html>
